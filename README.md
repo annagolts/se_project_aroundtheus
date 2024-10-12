@@ -18,3 +18,5 @@ This is the third project of the Software Engineering program at TripleTen. It w
 This projects features a page where users would be able co create a profile to which they would upload pictures with description of locations.
 
 ## Link to video about the page
+
+https://drive.google.com/file/d/1XS94BeznQbpNXIPf8FYnUQUHE6tPll6Q/view?usp=sharing
