@@ -28,6 +28,7 @@
   background-color: black;
   border: 2px solid white;
   transition: opacity 0.5s linear;
+  cursor: pointer;
 }
 .profile__add-button:hover {
   opacity: 60%;
@@ -46,6 +47,7 @@
   border: 1px solid white;
   transition: opacity 0.5s linear;
   align-self: center;
+  cursor: pointer;
 }
 .profile__edit-button:hover {
   opacity: 60%;
@@ -63,6 +65,7 @@
 }
 
 .profile__description {
+  max-width: 400px;
   margin: 7px 0 0;
   font-weight: 400;
   font-size: 18px;
@@ -112,6 +115,7 @@
     margin-left: 14px;
   }
   .profile__name {
+    max-width: 282px;
     font-size: 22px;
     line-height: 27px;
   }
@@ -124,5 +128,6 @@
   }
   .profile__grid {
     grid-template-columns: minmax(auto, 197px) auto;
+    justify-items: center;
   }
 }
