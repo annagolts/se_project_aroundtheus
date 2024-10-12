@@ -20,3 +20,7 @@ This projects features a page where users would be able co create a profile to w
 ## Link to video about the page
 
 https://drive.google.com/file/d/1XS94BeznQbpNXIPf8FYnUQUHE6tPll6Q/view?usp=sharing
+
+## Link to project on GitHub Pages
+
+https://annagolts.github.io/se_project_aroundtheus/
