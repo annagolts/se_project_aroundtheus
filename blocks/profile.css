@@ -115,13 +115,14 @@
     margin-left: 14px;
   }
   .profile__name {
-    max-width: 282px;
+    max-width: 220px;
     font-size: 22px;
     line-height: 27px;
   }
   .profile__description {
     font-size: 14px;
     line-height: 17px;
+    max-width: 280px;
   }
   .profile__image {
     margin: 42px auto 30px;
