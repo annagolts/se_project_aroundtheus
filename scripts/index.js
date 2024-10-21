@@ -37,7 +37,8 @@ const inputName = modal.querySelector(".modal__name");
 const inputDescription = modal.querySelector(".modal__description");
 const modalForm = modal.querySelector(".modal__container");
 const saveButton = modal.querySelector(".modal__save-button");
-
+const cardTemplate = document.querySelector("#card-template").content;
+const cardList = document.querySelector(".cards__list");
 /* Functions */
 
 function modalButtonsClickReaction() {
@@ -54,13 +55,6 @@ function handleProfileSubmitForm(evt) {
 modalForm.addEventListener("submit", handleProfileSubmitForm);
 saveButton.addEventListener("click", modalButtonsClickReaction);
 
-/* Listeners */
-editButton.addEventListener("click", modalButtonsClickReaction);
-exitButton.addEventListener("click", modalButtonsClickReaction);
-
-const cardTemplate = document.querySelector("#card-template").content;
-const cardList = document.querySelector("cards__list");
-
 function getCardElement(data) {
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
   const cardImage = cardElement.querySelector(".card__image");
@@ -70,7 +64,12 @@ function getCardElement(data) {
   cardTitle.textContent = data.name;
   return cardElement;
 }
+
 initialCards.forEach((data) => {
   const cardElement = getCardElement(data);
   cardList.append(cardElement);
 });
+
+/* Listeners */
+editButton.addEventListener("click", modalButtonsClickReaction);
+exitButton.addEventListener("click", modalButtonsClickReaction);
