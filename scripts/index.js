@@ -1,4 +1,4 @@
-let initialCards = [
+const initialCards = [
   {
     name: "Yosemite Valley",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
@@ -24,16 +24,53 @@ let initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
-let content = document.querySelector(".content");
-let editButton = content.querySelector(".profile__edit-button");
-let modal = document.querySelector(".modal");
-function editButtonClickReaction() {
-  modal.classList.add("modal_opened");
-}
-editButton.addEventListener("click", editButtonClickReaction);
 
-let exitButton = modal.querySelector(".modal__exit-button");
-function modalExitButtonClickReaction() {
-  modal.classList.remove("modal_opened");
+/* Elements */
+
+const content = document.querySelector(".content");
+const editButton = content.querySelector(".profile__edit-button");
+const modal = document.querySelector(".modal");
+const exitButton = modal.querySelector(".modal__exit-button");
+const profileName = content.querySelector(".profile__name");
+const profileDescription = content.querySelector(".profile__description");
+const inputName = modal.querySelector(".modal__name");
+const inputDescription = modal.querySelector(".modal__description");
+const modalForm = modal.querySelector(".modal__container");
+const saveButton = modal.querySelector(".modal__save-button");
+
+/* Functions */
+
+function modalButtonsClickReaction() {
+  modal.classList.toggle("modal_opened");
 }
-exitButton.addEventListener("click", modalExitButtonClickReaction);
+inputName.value = profileName.textContent;
+inputDescription.value = profileDescription.textContent;
+
+function handleProfileSubmitForm(evt) {
+  evt.preventDefault();
+  profileName.textContent = inputName.value;
+  profileDescription.textContent = inputDescription.value;
+}
+modalForm.addEventListener("submit", handleProfileSubmitForm);
+saveButton.addEventListener("click", modalButtonsClickReaction);
+
+/* Listeners */
+editButton.addEventListener("click", modalButtonsClickReaction);
+exitButton.addEventListener("click", modalButtonsClickReaction);
+
+const cardTemplate = document.querySelector("#card-template").content;
+const cardList = document.querySelector("cards__list");
+
+function getCardElement(data) {
+  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+  const cardImage = cardElement.querySelector(".card__image");
+  const cardTitle = cardElement.querySelector(".card__text");
+  cardImage.src = data.link;
+  cardImage.alt = data.name;
+  cardTitle.textContent = data.name;
+  return cardElement;
+}
+initialCards.forEach((data) => {
+  const cardElement = getCardElement(data);
+  cardList.append(cardElement);
+});

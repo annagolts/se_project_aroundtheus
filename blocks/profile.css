@@ -1,6 +1,5 @@
 .profile {
   max-width: 880px;
-
   display: flex;
   margin: 36.25px auto 51px;
   align-items: center;
@@ -113,6 +112,7 @@
     height: 18px;
     background-size: 7.5px 7.5px;
     margin-left: 14px;
+    position: absolute;
   }
   .profile__name {
     max-width: 220px;
@@ -128,7 +128,8 @@
     margin: 42px auto 30px;
   }
   .profile__grid {
-    grid-template-columns: minmax(auto, 197px) auto;
+    grid-template-columns: minmax(auto, 240px) auto;
     justify-items: center;
+    position: relative;
   }
 }
