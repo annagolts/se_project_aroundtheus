@@ -46,19 +46,11 @@
   font-weight: 900;
   font-size: 24px;
   line-height: 29px;
-  margin: 36px 36px 54px;
+  margin: 36px 36px 24px;
 }
-.modal__name {
-  margin: 0 36px;
-  border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  height: 27px;
-}
-.modal__description {
-  margin: 30px 36px 48px;
+
+.modal__input {
+  margin: 30px 36px 0;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   font-weight: 400;
@@ -70,7 +62,7 @@
   height: 50px;
   background-color: #000;
   color: #fff;
-  margin: 0 36px 36px;
+  margin: 48px 36px 36px;
   border-radius: 2px;
   text-align: center;
   font-weight: 400;
@@ -97,16 +89,16 @@
   .modal__title {
     font-size: 18px;
     line-height: 22px;
-    margin: 25px 22px 75px;
+    margin: 25px 22px 45px;
   }
-  .modal__name {
-    margin: 0 22px;
+  .modal__input {
+    margin: 30px 22px 0;
   }
-  .modal__description {
-    margin: 30px 22px 45px;
-  }
+
   .modal__save-button {
-    margin: 0 22px 25px;
+    margin: 45px 22px 25px;
     height: 46px;
+    font-size: 14px;
+    line-height: 17px;
   }
 }
