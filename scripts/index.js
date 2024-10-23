@@ -41,7 +41,7 @@ const cardTemplate = document.querySelector("#card-template").content;
 const cardList = document.querySelector(".cards__list");
 /* Functions */
 
-function openCloseModal() {
+function togleModal() {
   modal.classList.toggle("modal_opened");
 }
 
@@ -49,6 +49,7 @@ function handleProfileSubmitForm(evt) {
   evt.preventDefault();
   profileName.textContent = inputName.value;
   profileDescription.textContent = inputDescription.value;
+  togleModal();
 }
 
 function getCardElement(data) {
@@ -67,11 +68,13 @@ initialCards.forEach((data) => {
 });
 
 /* Listeners */
-inputName.value = profileName.textContent;
-inputDescription.value = profileDescription.textContent;
 
-editButton.addEventListener("click", openCloseModal);
-exitButton.addEventListener("click", openCloseModal);
+editButton.addEventListener("click", () => {
+  inputName.value = profileName.textContent;
+  inputDescription.value = profileDescription.textContent;
+  togleModal();
+});
+
+exitButton.addEventListener("click", togleModal);
 
 modalForm.addEventListener("submit", handleProfileSubmitForm);
-saveButton.addEventListener("click", openCloseModal);
