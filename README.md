@@ -12,6 +12,7 @@ This is the third project of the Software Engineering program at TripleTen. It w
 - CSS animation and transform
 - Responsive design
 - Media Queries
+- JavaScript
 
 ## Description
 
