@@ -60,18 +60,32 @@
     <div class="modal" id="edit-profile">
       <form class="modal__container" name="profile">
         <h2 class="modal__title">Edit profile</h2>
-        <input
-          type="text"
-          class="modal__input"
-          name="modal-name"
-          placeholder="Name"
-        />
-        <input
-          type="text"
-          class="modal__input"
-          name="modal-description"
-          placeholder="Description"
-        />
+        <div class="modal__lable">
+          <input
+            type="text"
+            id="owner-name"
+            class="modal__input"
+            name="modal-name"
+            placeholder="Name"
+            required
+            minlength="2"
+            maxlength="40"
+          />
+          <span class="modal__error" id="owner-name-error"></span>
+        </div>
+        <div class="modal__lable">
+          <input
+            type="text"
+            id="owner-description"
+            class="modal__input"
+            name="modal-description"
+            placeholder="Description"
+            required
+            minlength="2"
+            maxlength="200"
+          />
+          <span class="modal__error" id="owner-description-error"></span>
+        </div>
         <button class="modal__button" id="save-button" type="submit">
           Save
         </button>
@@ -81,19 +95,36 @@
     <div class="modal" id="new-place">
       <form class="modal__container" name="newplace">
         <h2 class="modal__title">New Place</h2>
-        <input
-          type="text"
-          class="modal__input"
-          name="modal-title"
-          placeholder="Title"
-        />
-        <input
-          type="text"
-          class="modal__input"
-          name="modal-link"
-          placeholder="Image Link"
-        />
-        <button class="modal__button" id="create-button" type="submit">
+        <div class="modal__lable">
+          <input
+            type="text"
+            id="add-new-place"
+            class="modal__input"
+            name="modal-title"
+            placeholder="Title"
+            required
+            minlength="1"
+            maxlength="30"
+          />
+          <span class="modal__error" id="add-new-place-error"></span>
+        </div>
+        <div class="modal__lable">
+          <input
+            type="url"
+            id="new-place-link"
+            class="modal__input"
+            name="modal-link"
+            placeholder="Image Link"
+            required
+          />
+          <span class="modal__error" id="new-place-link-error"></span>
+        </div>
+        <button
+          class="modal__button modal__button_disabled"
+          id="create-button"
+          type="submit"
+          disabled
+        >
           Create
         </button>
         <button class="modal__exit-button" type="button"></button>
@@ -112,5 +143,6 @@
       </div>
     </div>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validation.js"></script>
   </body>
 </html>

@@ -60,6 +60,8 @@ const cardFigcaption = modalPreview.querySelector(".modal__figcaption");
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", handleEscKey);
+  modal.addEventListener("click", handleOverlay);
 }
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
@@ -123,6 +125,18 @@ function handleCloseButtons() {
     const modalPopup = button.closest(".modal");
     button.addEventListener("click", () => closeModal(modalPopup));
   });
+}
+
+function handleEscKey(evt) {
+  if (evt.key === "Escape") {
+    const openModal = document.querySelector(".modal_opened");
+    closeModal(openModal);
+  }
+}
+function handleOverlay(evt) {
+  if (evt.target.classList.contains("modal_opened")) {
+    closeModal(evt.currentTarget);
+  }
 }
 
 /* Listeners */
