@@ -65,6 +65,8 @@ function openModal(modal) {
 }
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleEscKey);
+  modal.removeEventListener("click", handleOverlay);
 }
 
 function getCardElement(data) {
