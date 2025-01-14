@@ -1,4 +1,4 @@
-import Card from "../components/card.js";
+import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 
 const initialCards = [
@@ -52,6 +52,7 @@ const cardImagePreview = modalPreview.querySelector(".modal__image");
 const cardFigcaption = modalPreview.querySelector(".modal__figcaption");
 
 /* Validation */
+
 const validationSettings = {
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
@@ -71,6 +72,7 @@ const addCardValidation = new FormValidator(
   modalAddNewPlace
 );
 addCardValidation.enableValidation();
+
 /* Functions */
 
 function openModal(modal) {
