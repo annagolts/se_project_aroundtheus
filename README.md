@@ -9,15 +9,16 @@ This is the third project of the Software Engineering program at TripleTen. It w
 - Positioning
 - Flat BEM file structure
 - Buttons
-- CSS animation and transform
+- CSS animation and transformation
 - Responsive design
 - Media Queries
 - JavaScript
+- Object Oriented Programming
 
 ## Description
 
 This projects features a page where users would be able co create a profile to which they would upload pictures with description of locations. Forms are used to edit profile and add new pictures.
-Each form has validation protocols.
+Each form has validation protocols. The project is done using OOP.
 
 ## Link to video about the page
 
