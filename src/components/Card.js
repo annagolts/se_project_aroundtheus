@@ -13,7 +13,7 @@ export default class Card {
       this._handleDeleteButton();
     });
     this._cardImage.addEventListener("click", () => {
-      this._handleImageClick({ name: this._name, link: this._link });
+      this._handleImageClick(this._name, this._link);
     });
   }
   _handleLikeButton() {
