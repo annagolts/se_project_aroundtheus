@@ -44,17 +44,13 @@ const addCardValidation = new FormValidator(
 );
 addCardValidation.enableValidation();
 
-const userInfo = new UserInfo({
-  nameSelector: "#owner-name",
-  descriptionSelector: "#owner-description",
-});
+const userInfo = new UserInfo(".profile__name", ".profile__description");
 
 const popupWithImage = new PopupWithImage({ popupSelector: "#preview" });
 popupWithImage.setEventListeners();
 
 function addNewCard({ name, link }) {
   const card = new Card({ name, link }, "#card-template", (title, link) => {
-    console.log(title, link);
     popupWithImage.open(title, link);
   });
   return card.getCardEelement();
