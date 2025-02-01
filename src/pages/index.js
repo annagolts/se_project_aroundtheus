@@ -15,8 +15,8 @@ const addButton = content.querySelector(".profile__add-button");
 const modalEditProfle = document.querySelector("#edit-profile");
 const modalAddNewPlace = document.querySelector("#new-place");
 const modalPreview = document.querySelector("#preview");
-const profileName = content.querySelector(".profile__name");
-const profileDescription = content.querySelector(".profile__description");
+const profileName = document.querySelector("#owner-name");
+const profileDescription = document.querySelector("#owner-description");
 const inputName = modalEditProfle.querySelector("[name='modal-name']");
 const inputDescription = modalEditProfle.querySelector(
   "[name='modal-description']"
@@ -86,7 +86,7 @@ const addCardPopup = new PopupWithForm(
       name: formData.title,
       link: formData.link,
     });
-    cardSection.addItem(newCard);
+    cardSection.addItem(newCard, "prepend");
 
     addCardValidation._disableButton();
   }
@@ -94,9 +94,9 @@ const addCardPopup = new PopupWithForm(
 addCardPopup.setEventListeners();
 
 editButton.addEventListener("click", () => {
-  const { name, description } = userInfo.getUserInfo();
-  profileName.value = name;
-  profileDescription.value = description;
+  const currentUserInfo = userInfo.getUserInfo();
+  profileName.value = currentUserInfo.name;
+  profileDescription.value = currentUserInfo.description;
   editProfileValidation.resetValidation();
   editProfilePopup.open();
 });
