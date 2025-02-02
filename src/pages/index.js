@@ -5,42 +5,31 @@ import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
-import { initialCards, validationSettings } from "../utils/utils.js";
+import {
+  initialCards,
+  validationSettings,
+  content,
+  editButton,
+  addButton,
+  profileName,
+  profileDescription,
+  profileForm,
+  addNewPlaceForm,
+} from "../utils/utils.js";
 
 /* Elements */
-
-const content = document.querySelector(".content");
-const editButton = content.querySelector(".profile__edit-button");
-const addButton = content.querySelector(".profile__add-button");
-const modalEditProfle = document.querySelector("#edit-profile");
-const modalAddNewPlace = document.querySelector("#new-place");
-const modalPreview = document.querySelector("#preview");
-const profileName = document.querySelector("#owner-name");
-const profileDescription = document.querySelector("#owner-description");
-const inputName = modalEditProfle.querySelector("[name='modal-name']");
-const inputDescription = modalEditProfle.querySelector(
-  "[name='modal-description']"
-);
-const profileForm = document.forms.profile;
-const addNewPlaceForm = document.forms.newplace;
-const cardTemplate = document.querySelector("#card-template").content;
-const cardList = document.querySelector(".cards__list");
-const cardTitle = addNewPlaceForm.querySelector("[name='modal-title']");
-const cardLink = addNewPlaceForm.querySelector("[name='modal-link']");
-const cardImagePreview = modalPreview.querySelector(".modal__image");
-const cardFigcaption = modalPreview.querySelector(".modal__figcaption");
 
 // /* Validation */
 
 const editProfileValidation = new FormValidator(
   validationSettings,
-  modalEditProfle
+  profileForm
 );
 editProfileValidation.enableValidation();
 
 const addCardValidation = new FormValidator(
   validationSettings,
-  modalAddNewPlace
+  addNewPlaceForm
 );
 addCardValidation.enableValidation();
 
@@ -64,7 +53,7 @@ const cardSection = new Section(
       cardSection.addItem(cardElement);
     },
   },
-  cardList
+  ".cards__list"
 );
 cardSection.renderItems();
 
@@ -88,7 +77,7 @@ const addCardPopup = new PopupWithForm(
     });
     cardSection.addItem(newCard, "prepend");
 
-    addCardValidation._disableButton();
+    // addCardValidation._disableButton();
   }
 );
 addCardPopup.setEventListeners();

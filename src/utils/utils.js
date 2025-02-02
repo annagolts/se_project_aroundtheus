@@ -32,3 +32,13 @@ export const validationSettings = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
+
+export const content = document.querySelector(".content");
+export const editButton = content.querySelector(".profile__edit-button");
+export const addButton = content.querySelector(".profile__add-button");
+
+export const profileName = document.querySelector("#owner-name");
+export const profileDescription = document.querySelector("#owner-description");
+
+export const profileForm = document.forms.profile;
+export const addNewPlaceForm = document.forms.newplace;
