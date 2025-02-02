@@ -97,6 +97,7 @@
   line-height: 22px;
   cursor: pointer;
   transition: opacity 0.5s linear;
+  padding: 12px;
 }
 
 .modal__button_disabled {
