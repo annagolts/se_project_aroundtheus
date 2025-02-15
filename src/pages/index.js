@@ -16,10 +16,12 @@ import {
   profileForm,
   addNewPlaceForm,
 } from "../utils/utils.js";
+import Api from "../components/API.js";
 
-/* Elements */
+const popupWithImage = new PopupWithImage({ popupSelector: "#preview" });
+popupWithImage.setEventListeners();
 
-// /* Validation */
+/* Validation */
 
 const editProfileValidation = new FormValidator(
   validationSettings,
@@ -33,17 +35,17 @@ const addCardValidation = new FormValidator(
 );
 addCardValidation.enableValidation();
 
-const userInfo = new UserInfo(".profile__name", ".profile__description");
+/* API */
 
-const popupWithImage = new PopupWithImage({ popupSelector: "#preview" });
-popupWithImage.setEventListeners();
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "f3857f09-978d-4c4d-8ac9-210ed16e6fb0",
+    "Content-Type": "application/json",
+  },
+});
 
-function addNewCard({ name, link }) {
-  const card = new Card({ name, link }, "#card-template", (title, link) => {
-    popupWithImage.open(title, link);
-  });
-  return card.getCardEelement();
-}
+/* Get Initial Cards */
 
 const cardSection = new Section(
   {
@@ -57,30 +59,76 @@ const cardSection = new Section(
 );
 cardSection.renderItems();
 
+/* Get User Info and initial cards */
+
+const userInfo = new UserInfo(".profile__name", ".profile__description");
+api
+  .getUserInfoAndCards()
+  .then(({ userData, cards }) => {
+    userInfo.setUserInfo({
+      name: userData.name,
+      description: userData.about,
+      avatar: userData.avatar,
+    });
+    cardSection.renderItems(cards);
+  })
+  .then((res) => console.log(res))
+  .catch((err) => {
+    console.error("Error fetching user info:", err);
+  });
+
+/* Edit Profile */
+
 const editProfilePopup = new PopupWithForm(
   { popupSelector: "#edit-profile" },
   (formData) => {
-    userInfo.setUserInfo({
-      name: formData.title,
-      description: formData.description,
-    });
+    api
+      .updateUserProfile("me", {
+        name: formData.title,
+        about: formData.description,
+      })
+      .then((updateUserProfile) => {
+        userInfo.setUserInfo({
+          name: updateUserProfile.name,
+          description: updateUserProfile.about,
+        });
+      })
+      .catch((err) => console.error("Error updating user profile:", err));
   }
 );
 editProfilePopup.setEventListeners();
 
+/* Add New Card */
+
+function addNewCard({ name, link }) {
+  const card = new Card({ name, link }, "#card-template", (title, link) => {
+    popupWithImage.open(title, link);
+  });
+  return card.getCardEelement();
+}
+
 const addCardPopup = new PopupWithForm(
   { popupSelector: "#new-place" },
   (formData) => {
-    const newCard = addNewCard({
-      name: formData.title,
-      link: formData.link,
-    });
-    cardSection.addItem(newCard, "prepend");
-
-    // addCardValidation._disableButton();
+    api
+      .getNewCard({
+        name: formData.title,
+        link: formData.link,
+      })
+      .then((newCardData) => {
+        const newCard = addNewCard(newCardData);
+        cardSection.addItem(newCard, "prepend");
+      })
+      .catch((err) => console.error("Error adding new card:", err));
   }
 );
 addCardPopup.setEventListeners();
+
+/* Event Listeners */
+
+addButton.addEventListener("click", () => {
+  addCardPopup.open();
+});
 
 editButton.addEventListener("click", () => {
   const currentUserInfo = userInfo.getUserInfo();
@@ -88,8 +136,4 @@ editButton.addEventListener("click", () => {
   profileDescription.value = currentUserInfo.description;
   editProfileValidation.resetValidation();
   editProfilePopup.open();
-});
-
-addButton.addEventListener("click", () => {
-  addCardPopup.open();
 });
