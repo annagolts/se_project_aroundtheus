@@ -57,11 +57,14 @@ const cardSection = new Section(
   },
   ".cards__list"
 );
-cardSection.renderItems();
 
 /* Get User Info and initial cards */
 
-const userInfo = new UserInfo(".profile__name", ".profile__description");
+const userInfo = new UserInfo(
+  ".profile__name",
+  ".profile__description",
+  ".profile__image"
+);
 api
   .getUserInfoAndCards()
   .then(({ userData, cards }) => {
@@ -123,6 +126,10 @@ const addCardPopup = new PopupWithForm(
   }
 );
 addCardPopup.setEventListeners();
+
+/* Like/Dislike button */
+
+/* Delete Card */
 
 /* Event Listeners */
 

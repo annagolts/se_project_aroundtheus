@@ -30,6 +30,10 @@
   width: 430px;
   height: 330px;
 }
+
+.modal__container-confirmation {
+  height: 180px;
+}
 .modal__exit-button {
   position: absolute;
   right: -45px;
@@ -99,7 +103,8 @@
   transition: opacity 0.5s linear;
   padding: 12px;
 }
-
+.confirm-button {
+}
 .modal__button_disabled {
   height: 50px;
   background-color: #fff;
