@@ -4,6 +4,7 @@ import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation";
 import UserInfo from "../components/UserInfo.js";
 import {
   initialCards,
@@ -103,10 +104,17 @@ editProfilePopup.setEventListeners();
 
 /* Add New Card */
 
-function addNewCard({ name, link }) {
-  const card = new Card({ name, link }, "#card-template", (title, link) => {
-    popupWithImage.open(title, link);
-  });
+function addNewCard({ name, link, _id }) {
+  const card = new Card(
+    { name, link, _id },
+    "#card-template",
+    (title, link) => {
+      popupWithImage.open(title, link);
+    },
+    (cardElement) => {
+      handleDeleteButton(cardElement, _id);
+    }
+  );
   return card.getCardEelement();
 }
 
@@ -130,6 +138,28 @@ addCardPopup.setEventListeners();
 /* Like/Dislike button */
 
 /* Delete Card */
+const confirmModal = new PopupWithConfirmation(
+  {
+    popupSelector: "#confirmationModal",
+  },
+  api
+);
+function handleDeleteButton(cardElement, cardId) {
+  confirmModal.open();
+  confirmModal.setDeleteHandler({
+    cardId: cardId,
+    cardElement: cardElement,
+  });
+  api
+    .deleteCard(cardId)
+    .then(() => {
+      cardElement.confirmModal();
+      confirmModal.close();
+    })
+    .catch((err) => {
+      console.error("Error deleting card", err);
+    });
+}
 
 /* Event Listeners */
 

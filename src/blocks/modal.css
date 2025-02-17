@@ -57,6 +57,9 @@
   line-height: 29px;
   margin: 36px 36px 24px;
 }
+.modal__confirm-title {
+  margin-top: 34px;
+}
 .modal__lable {
   position: relative;
   display: flex;
@@ -103,7 +106,8 @@
   transition: opacity 0.5s linear;
   padding: 12px;
 }
-.confirm-button {
+.modal__confirm-button {
+  margin-top: 14px;
 }
 .modal__button_disabled {
   height: 50px;

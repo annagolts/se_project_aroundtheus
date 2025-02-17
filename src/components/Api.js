@@ -22,7 +22,7 @@ export default class Api {
     })
       .then(this._handleResponse)
       .catch((err) => {
-        console.error(err);
+        console.error("Error fetching cards", err);
       });
   }
 
@@ -63,8 +63,8 @@ export default class Api {
         console.error(err);
       });
   }
-  deleteCard(cardID) {
-    return fetch(`${this._baseUrl}/cards/${cardID}`, {
+  deleteCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
     })
@@ -73,8 +73,8 @@ export default class Api {
         console.error(err);
       });
   }
-  likeCard(cardID) {
-    return fetch(`${this._baseUrl}/cards/${cardID}/likes`, {
+  likeCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "PUT",
       headers: this._headers,
     })
@@ -83,8 +83,8 @@ export default class Api {
         console.error(err);
       });
   }
-  dislikeCard(cardID) {
-    return fetch(`${this._baseUrl}/cards/${cardID}/likes`, {
+  dislikeCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
     })
