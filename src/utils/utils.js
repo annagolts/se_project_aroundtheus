@@ -42,3 +42,4 @@ export const profileDescription = document.querySelector("#owner-description");
 
 export const profileForm = document.forms.profile;
 export const addNewPlaceForm = document.forms.newplace;
+export const modalCloseButton = document.querySelector(".modal__exit-button");

@@ -34,6 +34,9 @@
 .modal__container-confirmation {
   height: 180px;
 }
+.modal__container-editavatar {
+  height: 272px;
+}
 .modal__exit-button {
   position: absolute;
   right: -45px;
@@ -51,14 +54,19 @@
 .modal__exit-button:hover {
   opacity: 60%;
 }
+
 .modal__title {
   font-weight: 900;
   font-size: 24px;
   line-height: 29px;
   margin: 36px 36px 24px;
 }
-.modal__confirm-title {
+.modal__title-confirm {
   margin-top: 34px;
+}
+.modal__title-editavatar {
+  margin-top: 34px;
+  margin-bottom: 20px;
 }
 .modal__lable {
   position: relative;

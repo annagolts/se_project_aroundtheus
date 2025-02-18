@@ -16,6 +16,7 @@ import {
   profileDescription,
   profileForm,
   addNewPlaceForm,
+  modalCloseButton,
 } from "../utils/utils.js";
 import Api from "../components/API.js";
 
@@ -144,22 +145,23 @@ const confirmModal = new PopupWithConfirmation(
   },
   api
 );
+
 function handleDeleteButton(cardElement, cardId) {
   confirmModal.open();
-  confirmModal.setDeleteHandler({
-    cardId: cardId,
-    cardElement: cardElement,
-  });
-  api
-    .deleteCard(cardId)
-    .then(() => {
-      cardElement.confirmModal();
-      confirmModal.close();
-    })
-    .catch((err) => {
-      console.error("Error deleting card", err);
-    });
+  confirmModal.setDeleteHandler({ cardElement, cardId });
+
+  // api
+  //   .deleteCard(cardId)
+  //   .then(() => {
+  //     // cardElement.confirmModal();
+  //     confirmModal.close();
+  //   })
+  //   .catch((err) => {
+  //     console.error("Error deleting card", err);
+  //   });
 }
+
+confirmModal.setEventListeners();
 
 /* Event Listeners */
 

@@ -21,10 +21,10 @@ export default class Card {
   _handleLikeButton() {
     this._likeButton.classList.toggle("card__like-button_clicked");
   }
-  _handleDeleteButton() {
-    this._cardElement.remove();
-    this._cardElement = null;
-  }
+  // _handleDeleteButton() {
+  //   this._cardElement.remove();
+  //   this._cardElement = null;
+  // }
 
   getCardEelement() {
     this._cardElement = document
@@ -38,7 +38,6 @@ export default class Card {
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
     this._cardElement.querySelector(".card__text").textContent = this._name;
-    this._handleDeleteButton(this._cardElement, this._id);
     return this._cardElement;
   }
 }

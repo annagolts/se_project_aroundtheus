@@ -6,8 +6,11 @@ export default class PopupWithConfirmation extends Popup {
       ".modal__confirm-button"
     );
     this._api = api;
+    this._handleConfirm = null;
   }
+
   setDeleteHandler({ cardElement, cardId }) {
+    this._confirmButton.removeEventListener("click", this._handleConfirm);
     this._handleConfirm = () => {
       this._api
         .deleteCard(cardId)
@@ -21,6 +24,10 @@ export default class PopupWithConfirmation extends Popup {
   setEventListeners() {
     super.setEventListeners();
 
-    this._confirmButton.addEventListener("click", this._handleConfirm);
+    this._confirmButton.addEventListener("click", () => {
+      if (this._handleConfirm) {
+        this._handleConfirm();
+      }
+    });
   }
 }

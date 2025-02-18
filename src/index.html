@@ -30,6 +30,11 @@
           alt="Jacques Coustaeu img"
           class="profile__image"
         />
+        <button
+          class="profile__edit-icon"
+          id="profile-edit-icon"
+          type="button"
+        ></button>
         <div class="profile__grid">
           <h1 class="profile__name"></h1>
 
@@ -56,6 +61,9 @@
     <footer class="footer">
       <p class="footer__text">&copy;2024 Around the U.S.</p>
     </footer>
+
+    <!--  Edit Profile  -->
+
     <div class="modal" id="edit-profile">
       <form class="modal__container" name="profile">
         <h2 class="modal__title">Edit profile</h2>
@@ -91,6 +99,9 @@
         <button class="modal__exit-button" type="button"></button>
       </form>
     </div>
+
+    <!-- Add card -->
+
     <div class="modal" id="new-place">
       <form class="modal__container" name="newplace">
         <h2 class="modal__title">New Place</h2>
@@ -129,6 +140,39 @@
         <button class="modal__exit-button" type="button"></button>
       </form>
     </div>
+    <!-- Edit Avatar -->
+    <div class="modal" id="edit-avatar">
+      <form
+        class="modal__container modal__container-editavatar"
+        name="editavatar"
+      >
+        <h2 class="modal__title modal__title-editavatar">
+          Change profile picture
+        </h2>
+        <div class="modal__lable">
+          <input
+            type="url"
+            id="edit-avatar-link"
+            class="modal__input"
+            name="link"
+            placeholder="Image Link"
+            required
+          />
+          <span class="modal__error" id="edit-avatar-link-error"></span>
+        </div>
+        <button
+          class="modal__button modal__button_disabled"
+          id="create-button"
+          type="submit"
+          disabled
+        >
+          Save
+        </button>
+        <button class="modal__exit-button" type="button"></button>
+      </form>
+    </div>
+    <!-- Preview -->
+
     <div class="modal" id="preview">
       <div class="modal__preview">
         <figure class="modal__figure">
@@ -141,12 +185,15 @@
         ></button>
       </div>
     </div>
+
+    <!-- Confirmation  -->
+
     <div class="modal" id="confirmationModal">
       <form
         class="modal__container modal__container-confirmation"
         name="confirmationModal"
       >
-        <h2 class="modal__title modal__confirm-title">Are you sure?</h2>
+        <h2 class="modal__title modal__title-confirm">Are you sure?</h2>
         <button
           class="modal__confirm-button modal__button"
           type="submit"
