@@ -73,24 +73,20 @@ export default class Api {
         console.error(err);
       });
   }
-  likeCard(cardId) {
+
+  changeLikeStatus(cardId, isLiked) {
+    const method = isLiked ? "DELETE" : "PUT";
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-      method: "PUT",
+      method: method,
       headers: this._headers,
     })
       .then(this._handleResponse)
+      .then((data) => {
+        console.log("Like status updated:", data);
+        return data;
+      })
       .catch((err) => {
-        console.error(err);
-      });
-  }
-  dislikeCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-      method: "DELETE",
-      headers: this._headers,
-    })
-      .then(this._handleResponse)
-      .catch((err) => {
-        console.error(err);
+        console.error("Error updating status", err);
       });
   }
 }

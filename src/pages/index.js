@@ -17,6 +17,7 @@ import {
   profileForm,
   addNewPlaceForm,
   modalCloseButton,
+  likeButton,
 } from "../utils/utils.js";
 import Api from "../components/API.js";
 
@@ -105,15 +106,18 @@ editProfilePopup.setEventListeners();
 
 /* Add New Card */
 
-function addNewCard({ name, link, _id }) {
+function addNewCard({ name, link, _id, isLiked }) {
   const card = new Card(
-    { name, link, _id },
+    { name, link, _id, isLiked },
     "#card-template",
     (title, link) => {
       popupWithImage.open(title, link);
     },
     (cardElement) => {
       handleDeleteButton(cardElement, _id);
+    },
+    (cardId, isLiked) => {
+      return api.changeLikeStatus(cardId, isLiked);
     }
   );
   return card.getCardEelement();
@@ -138,6 +142,20 @@ addCardPopup.setEventListeners();
 
 /* Like/Dislike button */
 
+function handleLike(cardId) {
+  api
+    .changeLikeStatus(cardId, isLiked)
+    .then(() => {
+      // likeButton.classList.toggle("card__like-button_clicked");
+      if (isLiked) {
+        likeButton.classList.add("card__like-button_clicked");
+      } else {
+        likeButton.classList.remove("card__like-button_clicked");
+      }
+    })
+    .catch((err) => console.error(err));
+}
+
 /* Delete Card */
 const confirmModal = new PopupWithConfirmation(
   {
@@ -149,16 +167,6 @@ const confirmModal = new PopupWithConfirmation(
 function handleDeleteButton(cardElement, cardId) {
   confirmModal.open();
   confirmModal.setDeleteHandler({ cardElement, cardId });
-
-  // api
-  //   .deleteCard(cardId)
-  //   .then(() => {
-  //     // cardElement.confirmModal();
-  //     confirmModal.close();
-  //   })
-  //   .catch((err) => {
-  //     console.error("Error deleting card", err);
-  //   });
 }
 
 confirmModal.setEventListeners();
@@ -176,3 +184,4 @@ editButton.addEventListener("click", () => {
   editProfileValidation.resetValidation();
   editProfilePopup.open();
 });
+likeButton.addEventListener("click", handleLike);
